@@ -1,0 +1,53 @@
+generated: '2026-08-02'
+method: probed
+source: live probes of ClearMotion hosts
+note: >-
+  Probed the standard /.well-known/ discovery surface — plus the A2A agent-card paths
+  and the common OpenAPI/Swagger locations — across every ClearMotion host found in
+  apis.yml and via DNS enumeration. Nothing returned 200. Recorded here as honest
+  negative results. No WellKnown, SecurityTxt, AgentCard or OpenAPI pointer is emitted
+  because nothing was found. Note on a false positive: roadmotion.com (the name of
+  ClearMotion's cloud road-intelligence service) is an unrelated Squarespace "Coming
+  Soon" placeholder that answers HTTP 200 with an HTML shell for every path,
+  including /.well-known/agent-card.json and /openapi.json — it was rejected, and it
+  is not a ClearMotion-operated host.
+hosts:
+- host: https://www.clearmotion.com
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+  - {path: /llms.txt, status: 404}
+  - {path: /openapi.json, status: 404}
+  - {path: /openapi.yaml, status: 404}
+  - {path: /swagger.json, status: 404}
+  - {path: /api-docs, status: 404}
+- host: https://clearmotion.com
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+  - {path: /llms.txt, status: 404}
+  - {path: /openapi.json, status: 404}
+dns_enumeration:
+  note: >-
+    Checked the usual API/developer subdomain names for a hidden API or docs host.
+    Only two resolve, and neither serves a public surface.
+  hosts:
+  - {host: api.clearmotion.com, resolves: false}
+  - {host: developer.clearmotion.com, resolves: false}
+  - {host: roadmotion.clearmotion.com, resolves: false}
+  - {host: cloud.clearmotion.com, resolves: false}
+  - {host: app.clearmotion.com, resolves: false}
+  - {host: status.clearmotion.com, resolves: false}
+  - {host: trust.clearmotion.com, resolves: false}
+  - {host: docs.clearmotion.com, resolves: true, note: 'CNAME to cmi-web-assets.s3.amazonaws.com; returns S3 AllAccessDisabled — no public docs'}
+  - {host: portal.clearmotion.com, resolves: true, note: 'resolves to 50.206.93.166; no HTTP/HTTPS response — private/OEM portal'}
