@@ -21,6 +21,17 @@ x-source: harvest:secondary-market
 x-tier: stub
 x-tier-reason: harvest
 x-secondary-market: https://forgeglobal.com/clearmotion_stock/
+deliveryModel:
+  model: unknown
+  open_source: false
+  commercial: false
+  callable_host: false
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - none
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: unknown
